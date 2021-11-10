@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {{!-- <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+      integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+      crossorigin="anonymous"
+    /> --}}
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/estilos.css">
+    <script src= "https://unpkg.com/axios/dist/axios.min.js" ></script>
+    <script src= "https://code.jquery.com/jquery-3.5.1.js" integrity= "sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="crossorigin= "anonymous"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="/">Skate Park</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item active" id="navLogin">
+                    <a class="nav-link" href="/login">Login</a>
+                </li>
+                <li class="nav-item active" id="navSetting">
+                    <a class="nav-link" href="/usuarios/ajustes">Ajustes</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <h1>Skate Park</h1>
+    
+    {{{ body }}}
+
+    <script>
+        if (window.sessionStorage.getItem('token'))
+        {
+            document.getElementById('navLogin').style.display = 'none';
+            document.getElementById('navSetting').style.display = 'block';
+        }
+        else
+        {
+            document.getElementById('navLogin').style.display = 'block';
+            document.getElementById('navSetting').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

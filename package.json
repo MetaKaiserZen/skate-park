@@ -1,0 +1,29 @@
+{
+  "name": "skate-park",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MetaKaiserZen/skate-park.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MetaKaiserZen/skate-park/issues"
+  },
+  "homepage": "https://github.com/MetaKaiserZen/skate-park#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "bootstrap": "^4.6.1",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.2.1",
+    "express-handlebars": "^5.3.4",
+    "jsonwebtoken": "^8.5.1",
+    "pg": "^8.7.1"
+  }
+}
