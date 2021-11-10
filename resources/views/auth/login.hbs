@@ -1,0 +1,45 @@
+<div class="py-5">
+    <h2>Iniciar Sesión</h2>
+    <hr class="w-50" />
+
+    <form>
+        <div class="form-group">
+            <div class="form-group">
+                <label>Email</label>
+                <input type="text" class="form-control w-50 m-auto" id="email">
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" class="form-control w-50 m-auto" id="password">
+            </div>
+        </div>
+        <button class="btn btn-success mb-3" onclick="login()">Ingresar</button>
+        <p>¿Aún no tienes cuenta? <a href="/register">Regístrate</a></p>
+    </form>
+
+</div>
+
+<script>
+    window.sessionStorage.removeItem('token');
+
+    function login()
+    {
+        let email = document.getElementById('email').value;
+        let password = document.getElementById('password').value;
+
+        let payload = { email, password };
+
+        axios.post('/login', payload).then(data =>
+        {
+            sessionStorage.setItem('sessionID', email);
+
+            const token = data.data;
+
+            alert('¡Autenticado con éxito! Serás redirigido a Skaters para que revises tu estado');
+
+            sessionStorage.setItem('token', JSON.stringify(token));
+
+            window.location.href = `/usuarios/skaters?token=${token}`;
+        }).catch(({ response }) => alert(response.data.error));
+    }
+</script>

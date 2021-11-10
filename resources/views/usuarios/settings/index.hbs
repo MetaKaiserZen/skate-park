@@ -1,0 +1,82 @@
+<div class="py-4">
+    <h2>Datos del perfil</h2>
+    <hr class="w-50">
+
+    <form>
+        <div class="form-group row w-50 m-auto">
+            {{!-- <div class="form-group col-12 col-sm-6"> --}}
+            <div class="form-group col-12 col-sm-6" style="display: none;">
+                <label>ID</label>
+                <input class="form-control m-auto" id="sessionID" value="{{ skater.email }}">
+            </div>
+            <div class="form-group col-12 col-sm-6">
+                <label>Email</label>
+                <input class="form-control m-auto" id="email" value="{{ skater.email }}" disabled>
+            </div>
+            <div class="form-group col-12 col-sm-6">
+                <label>Nombre</label>
+                <input type="text" class="form-control m-auto" id="nombre" value="{{ skater.nombre }}" required>
+            </div>
+            <div class="form-group col-12 col-sm-6">
+                <label>Password</label>
+                <input type="password" class="form-control m-auto" id="password" value="" required>
+            </div>
+            <div class="form-group col-12 col-sm-6">
+                <label>Repita la Password</label>
+                <input type="password" class="form-control m-auto" id="confirmar" value="" required>
+            </div>
+            <div class="form-group col-12 col-sm-6">
+                <label>Años de Experiencia</label>
+                <input type="number" class="form-control m-auto" id="experiencia" value="{{ skater.experiencia }}" required>
+            </div>
+            <div class="form-group col-12 col-sm-6">
+                <label>Especialidad</label>
+                <input type="especialidad" class="form-control m-auto" id="especialidad" value="{{ skater.especialidad }}" required>
+            </div>
+        </div>
+        <div class="mb-1">
+            <button class="btn btn-primary" onclick="actualizar()">Actualizar</button>
+        </div>
+        <div>
+            <button class="btn btn-danger" onclick="eliminar()">Eliminar cuenta</button>
+        </div>
+    </form>
+</div>
+
+<script>
+    document.getElementById('sessionID').value = sessionStorage.getItem('sessionID');
+
+    function actualizar()
+    {
+        const email = document.getElementById('email').value;
+        const nombre = document.getElementById('nombre').value;
+        const password = document.getElementById('password').value;
+        const experiencia = document.getElementById('experiencia').value;
+        const especialidad = document.getElementById('especialidad').value;
+
+        let payload = { email, nombre, password, experiencia, especialidad };
+
+        axios.put('/usuarios/ajustes', payload).then(data =>
+        {
+            alert('Skater actualizado con éxito');
+
+            window.location.href = '/usuarios/ajustes';
+        }).catch(({ response }) => alert(response.data.error));
+    };
+
+    function eliminar()
+    {
+        const sessionID = document.getElementById('sessionID').value;
+
+        let payload = { sessionID };
+
+        axios.post('/usuarios/ajustes', payload).then(data =>
+        {
+            window.sessionStorage.removeItem('token');
+
+            alert('Skater eliminado con éxito');
+
+            window.location.href = '/';
+        }).catch(({ response }) => alert(response.data.error));
+    };
+</script>

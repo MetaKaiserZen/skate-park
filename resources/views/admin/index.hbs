@@ -1,0 +1,43 @@
+<div class="py-4">
+    <h2>Administración</h2>
+    <hr class="w-50">
+
+    <table class="table w-50 m-auto">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Foto</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Años de Experiencia</th>
+                <th scope="col">Especialidad</th>
+                <th scope="col">Estado</th>
+            </tr>
+        </thead>
+        <tbody id="adminSkaters">
+
+            {{#each skaters }}
+                <tr>
+                    <td>{{ inc @index }}</td>
+                    <td><img src='/public/storage/uploads/{{ this.foto }}.png' style="width: 100px;"></td>
+                    <td>{{ this.nombre }}</td>
+                    <td>{{ this.experiencia }}</td>
+                    <td>{{ this.especialidad }}</td>
+                    <td><input type="checkbox" {{#if this.estado }} checked {{/if}} onclick="changeStatus({{ this.id }}, this)" value="1"></td>
+                </tr>
+            {{/each}}
+
+        </tbody>
+    </table>
+
+</div>
+
+<script>
+    const changeStatus = async (id, e) =>
+    {
+        let estado = e.checked;
+
+        await axios.put('/admin', { id, estado });
+
+        alert(estado ? '¡Skater aprobado!' : '¡Skater desaprobado!');
+    }
+</script>
